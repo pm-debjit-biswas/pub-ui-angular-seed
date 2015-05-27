@@ -15,8 +15,8 @@ System.config({
 
 System.config({
   "map": {
-    "angular": "/bower_components/angular/angular",
-    "angular-ui-router": "/bower_components/ui-router/release/angular-ui-router",
+    "angular": "/client/lib/angular/angular",
+    "angular-ui-router": "/client/lib/ui-router/release/angular-ui-router",
     "pmcc": "https://s3.amazonaws.com/pubmatic-cc/0.1.29/pmcc.min",
     "babel": "/node_modules/babel-core/browser",
     "babel-runtime": "/node_modules/babel-runtime",
