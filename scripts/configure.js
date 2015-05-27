@@ -81,7 +81,7 @@ inquirer.prompt([
     ]).on('close', function(code) {
         if (code === 0) {
             var pkg = require(path.join(__dirname, '../node_modules', answers.flib, 'package.json'));
-            addLibrary(answers.flib, '/node_modules/' + answers.flib + '/' + pkg.main);
+            addLibrary(answers.flib, '/node_modules/' + answers.flib + '/' + pkg.main.replace(/\.js$/, ''));
         }
     });
 });
