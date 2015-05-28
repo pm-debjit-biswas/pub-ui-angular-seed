@@ -2,9 +2,6 @@ env:
     browser: true
     es6: true
 
-plugins:
-    - angular
-
 ecmaFeatures:
     modules: true
     arrowFunctions: true
