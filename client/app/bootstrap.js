@@ -1,9 +1,11 @@
 import 'angular';
-import { app } from './app';
+import { mainModule } from './main';
+
+/*eslint "angular/ng_document_service":0 */
 
 angular.element(document).ready(function() {
     angular.bootstrap(document.body, [
-      app.name
+      mainModule.name
     ], {
         strictDi: true
     });
