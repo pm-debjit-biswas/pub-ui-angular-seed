@@ -1,13 +1,12 @@
 var fs = require('fs');
 var path = require('path');
 var spawn = require('child_process').spawn;
-var inquirer = require("inquirer");
+var inquirer = require('inquirer');
 var acorn = require('acorn');
 var walk = require('acorn/dist/walk.js');
 var escodegen = require('escodegen');
 
 function addLibrary(name, lpath) {
-    var stack = [];
     var ast = acorn.parse(fs.readFileSync(path.join(__dirname, '../config.js')));
     walk.simple(ast, {
         CallExpression: function(node) {
@@ -21,12 +20,11 @@ function addLibrary(name, lpath) {
                                     {
                                         key: {
                                             value: name,
-                                            raw: '"' + name + '"',
-                                            type: 'Literal',
+                                            type: 'Literal'
                                         },
                                         value: {
                                             value: lpath,
-                                            type: 'Literal',
+                                            type: 'Literal'
                                         },
                                         kind: 'init',
                                         type: 'Property'
@@ -47,8 +45,7 @@ function addLibrary(name, lpath) {
                     quotes: 'double'
                 }
             }));
-        },
-        
+        }
     });
 }
 
@@ -59,8 +56,8 @@ inquirer.prompt([
         message: 'Which functional library would you like to use?',
         choices: [
             {
-                name: "lodash",
-                value: "lodash"
+                name: 'lodash',
+                value: 'lodash'
             },
             {
                 name: 'lodash-fp',

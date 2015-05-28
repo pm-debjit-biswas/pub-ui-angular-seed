@@ -1,3 +1,4 @@
+/*eslint quotes: [2, "double"] */
 System.config({
   "baseURL": "/client/app/",
   "transpiler": "babel",
