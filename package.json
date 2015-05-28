@@ -4,7 +4,7 @@
   "description": "An AngularJS boilerplate for PubMatic Applications.",
   "scripts": {
     "configure": "node scripts/configure.js",
-    "serve": "node scripts/serve.js",
+    "start": "node scripts/serve.js",
     "lint": "eslint .",
     "test": "npm test"
   },
