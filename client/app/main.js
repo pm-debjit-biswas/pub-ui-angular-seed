@@ -2,7 +2,10 @@ import 'angular';
 import 'pmcc';
 
 import { homeModule } from 'pages/home/home';
+import { examplesModule } from 'pages/examples/examples';
 
 export var mainModule = angular.module('app', [
-    homeModule.name
+    'pmcc',
+    homeModule.name,
+    examplesModule.name
 ]).run();
