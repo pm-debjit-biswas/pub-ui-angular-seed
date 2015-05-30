@@ -5,7 +5,7 @@
   "scripts": {
     "configure": "node scripts/configure.js",
     "start": "node scripts/serve.js",
-    "lint": "eslint .",
+    "lint": "eslint . && jscs -e **/*.js *.js",
     "test": "npm test"
   },
   "keywords": [
@@ -27,7 +27,8 @@
     "eslint-plugin-angular": "0.0.7",
     "inquirer": "~0.8.5",
     "acorn": "~2.0.1",
-    "escodegen": "~1.6.1"
+    "escodegen": "~1.6.1",
+    "jscs": "~1.13.1"
   },
   "dependencies": {
     "angular": "~1.4.0",

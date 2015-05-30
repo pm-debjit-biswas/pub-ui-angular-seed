@@ -39,10 +39,10 @@ function addLibrary(name, lpath) {
             fs.writeFileSync(path.join(__dirname, '../config.js'), escodegen.generate(ast, {
                 format: {
                     indent: {
-                        style: '  ',
+                        style: '    ',
                         base: 0
                     },
-                    quotes: 'double'
+                    quotes: 'single'
                 }
             }));
         }
@@ -70,15 +70,18 @@ inquirer.prompt([
         ],
         default: 'lodash'
     }
-], function( answers ) {
+], function(answers) {
     spawn('npm', [
         'install',
         answers.flib,
         '--save'
     ]).on('close', function(code) {
         if (code === 0) {
-            var pkg = require(path.join(__dirname, '../node_modules', answers.flib, 'package.json'));
-            addLibrary(answers.flib, '/node_modules/' + answers.flib + '/' + pkg.main.replace(/\.js$/, ''));
+            var pkg = require(path.join(__dirname,
+                '../node_modules', answers.flib, 'package.json'));
+
+            addLibrary(answers.flib,
+                '/node_modules/' + answers.flib + '/' + pkg.main.replace(/\.js$/, ''));
         }
     });
 });
