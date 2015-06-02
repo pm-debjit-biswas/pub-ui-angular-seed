@@ -1,4 +1,4 @@
-import 'angular';
+import angular from 'angular';
 import 'pmcc';
 
 import { homeModule } from 'pages/home/home';

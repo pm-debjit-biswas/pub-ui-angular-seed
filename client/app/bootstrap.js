@@ -1,4 +1,4 @@
-import 'angular';
+import angular from 'angular';
 import { mainModule } from './main';
 
 /*eslint "angular/ng_document_service":0 */

@@ -1,5 +1,6 @@
-import examplesRoute from './examples.route';
+import angular from 'angular';
 import 'angular-ui-router';
+import examplesRoute from './examples.route';
 
 import { todoExampleModule } from './todo-example/todo';
 

@@ -1,5 +1,6 @@
-import todoExampleRoute from './todo.route';
+import angular from 'angular';
 import 'angular-ui-router';
+import todoExampleRoute from './todo.route';
 import TodoListCtrl from './todo.controller';
 
 export var todoExampleModule = angular.module('todoExample', [
