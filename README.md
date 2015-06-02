@@ -3,6 +3,9 @@ PubMatic UI Seed for AngularJS
 
 This is a boilerplate for PubMatic application UI. This boilerplate supports ES6 using Babel.
 
+__Note__: If you want to use (```jspm```)[http://jspm.io] instead of npm for browser dependencies,
+use the (```jspm```)[https://github.com/pm-debjit-biswas/pub-ui-angular-seed/tree/jspm] branch of this repository.
+
 Features
 --------
 
