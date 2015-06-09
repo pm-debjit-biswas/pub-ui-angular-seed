@@ -1,18 +1,41 @@
 System.config({
-    'baseURL': '/client/app/',
-    'transpiler': 'babel',
-    'babelOptions': {'optional': ['runtime']},
-    'paths': {
-        '*': '*.js'
-    }
+  "baseURL": "/client/app/",
+  "transpiler": "babel",
+  "babelOptions": {
+    "optional": [
+      "runtime"
+    ]
+  },
+  "paths": {
+    "*": "*.js",
+    "github:*": "/jspm_packages/github/*.js",
+    "npm:*": "/jspm_packages/npm/*.js"
+  }
 });
+
 System.config({
-    'map': {
-        'babel': '/node_modules/babel-core/browser',
-        'babel-runtime': '/node_modules/babel-runtime',
-        'core-js': '/node_modules/core-js',
-        'angular': '/node_modules/angular/index',
-        'angular-ui-router': '/node_modules/angular-ui-router/release/angular-ui-router',
-        'pmcc': 'https://s3.amazonaws.com/pubmatic-cc/0.1.29/pmcc.min'
+  "map": {
+    "angular": "github:angular/bower-angular@1.4.0",
+    "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
+    "babel": "npm:babel-core@5.4.7",
+    "babel-runtime": "npm:babel-runtime@5.4.7",
+    "core-js": "npm:core-js@0.9.13",
+    "pmcc": "https://s3.amazonaws.com/pubmatic-cc/0.1.29/pmcc.min",
+    "ramda": "npm:ramda@0.14.0",
+    "github:angular-ui/ui-router@0.2.15": {
+      "angular": "github:angular/bower-angular@1.4.0"
+    },
+    "github:jspm/nodelibs-process@0.1.1": {
+      "process": "npm:process@0.10.1"
+    },
+    "npm:core-js@0.9.13": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
+    },
+    "npm:ramda@0.14.0": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
     }
+  }
 });
+

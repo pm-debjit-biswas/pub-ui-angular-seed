@@ -6,49 +6,6 @@ var acorn = require('acorn');
 var walk = require('acorn/dist/walk.js');
 var escodegen = require('escodegen');
 
-function addLibrary(name, lpath) {
-    var ast = acorn.parse(fs.readFileSync(path.join(__dirname, '../config.js')));
-    walk.simple(ast, {
-        CallExpression: function(node) {
-            if (node.callee.object.name === 'System' &&
-                node.callee.property.name === 'config') {
-                node.arguments.forEach(function(arg) {
-                    if (arg.type === 'ObjectExpression') {
-                        arg.properties.forEach(function(prop) {
-                            if (prop.key.value === 'map') {
-                                prop.value.properties.push(
-                                    {
-                                        key: {
-                                            value: name,
-                                            type: 'Literal'
-                                        },
-                                        value: {
-                                            value: lpath,
-                                            type: 'Literal'
-                                        },
-                                        kind: 'init',
-                                        type: 'Property'
-                                    }
-                                );
-                            }
-                        });
-                    }
-                });
-            }
-
-            fs.writeFileSync(path.join(__dirname, '../config.js'), escodegen.generate(ast, {
-                format: {
-                    indent: {
-                        style: '    ',
-                        base: 0
-                    },
-                    quotes: 'single'
-                }
-            }));
-        }
-    });
-}
-
 inquirer.prompt([
     {
         type: 'list',
@@ -57,31 +14,22 @@ inquirer.prompt([
         choices: [
             {
                 name: 'lodash',
-                value: 'lodash'
+                value: 'npm:lodash'
             },
             {
                 name: 'lodash-fp',
-                value: 'lodash-fp'
+                value: 'npm:lodash-fp'
             },
             {
                 name: 'ramda',
-                value: 'ramda'
+                value: 'npm:ramda'
             }
         ],
         default: 'lodash'
     }
 ], function(answers) {
-    spawn('npm', [
+    spawn(path.join(__dirname, '../node_modules/.bin/jspm'), [
         'install',
-        answers.flib,
-        '--save'
-    ]).on('close', function(code) {
-        if (code === 0) {
-            var pkg = require(path.join(__dirname,
-                '../node_modules', answers.flib, 'package.json'));
-
-            addLibrary(answers.flib,
-                '/node_modules/' + answers.flib + '/' + pkg.main.replace(/\.js$/, ''));
-        }
-    });
+        answers.flib
+    ], {stdio: 'inherit'});
 });

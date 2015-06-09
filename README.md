@@ -20,7 +20,7 @@ All the dependencies required for the build system, testing and so on are manage
 package.json. They can be installed with:
 
 ```
-npm install
+npm install 
 ```
 
 Running the application
@@ -50,5 +50,5 @@ No, but it is highly recommended. Such a library will provide many built-in func
 read and maintain.
 
 ### How do I install any other dependency?
-You can install your custom dependencies using ```npm install <pkg-name>```, and add the mapping in ```config.js```, 
-so that it can be imported using ES6 module syntax.
+You can install your application dependencies using ```jspm install <pkg-name>```. For development dependencies
+use ``npm install <pkg-name>```.
