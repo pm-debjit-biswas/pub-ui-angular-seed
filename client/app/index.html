@@ -23,6 +23,13 @@
     <script src="../../jspm_packages/system.js"></script>
     <script src="../../config.js"></script>
     <script>
+        System.config({
+            "paths": {
+                "*": "*.js",
+                "github:*": "/jspm_packages/github/*.js",
+                "npm:*": "/jspm_packages/npm/*.js"
+            }
+        });
         System.import('bootstrap');
     </script>
 </body>
