@@ -1,5 +1,4 @@
 System.config({
-  "baseURL": "/client/app/",
   "transpiler": "babel",
   "babelOptions": {
     "optional": [
@@ -7,7 +6,8 @@ System.config({
     ]
   },
   "paths": {
-    "*": "*.js",
+    "*": "client/app/*.js",
+    "node_modules/*": "node_modules/*.js",
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js"
   }
@@ -20,7 +20,7 @@ System.config({
     "babel": "npm:babel-core@5.4.7",
     "babel-runtime": "npm:babel-runtime@5.4.7",
     "core-js": "npm:core-js@0.9.13",
-    "pmcc": "https://s3.amazonaws.com/pubmatic-cc/0.1.29/pmcc.min",
+    "pmcc": "../../node_modules/pub-ux-components/pmcc/0.1.31/pmcc.min",
     "ramda": "npm:ramda@0.14.0",
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.4.0"

@@ -28,9 +28,7 @@
     "jspm": "~0.15.6"
   },
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-ui-router": "~0.2.15",
-    "core-js": "~0.9.13"
+    "pmcc": "PubMatic/pub-ux-components"
   },
   "jspm": {
     "directories": {},
