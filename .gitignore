@@ -4,3 +4,4 @@ node_modules/
 jspm_packages/
 .idea/
 npm-debug.log
+dist/
