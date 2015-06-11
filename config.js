@@ -22,6 +22,7 @@ System.config({
     "core-js": "npm:core-js@0.9.13",
     "pmcc": "../../node_modules/pub-ux-components/pmcc/0.1.31/pmcc.min",
     "ramda": "npm:ramda@0.14.0",
+    "text": "github:systemjs/plugin-text@0.0.2",
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.4.0"
     },

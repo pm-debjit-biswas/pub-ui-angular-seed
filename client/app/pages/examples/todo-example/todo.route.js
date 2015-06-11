@@ -1,7 +1,9 @@
+import template from './todo.html!text';
+
 export default function todoExampleRoute($stateProvider) {
     return $stateProvider.state('todoExample', {
         url: '/examples/todo',
-        templateUrl: 'pages/examples/todo-example/todo.html',
+        template: template,
         controller: 'TodoListCtrl',
         controllerAs: 'todoList'
     });
