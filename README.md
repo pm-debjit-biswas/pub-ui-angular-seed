@@ -11,6 +11,8 @@ Features
 
 * ES6 support
 * Build system
+* Linting and style checks
+* Testing infrastructure [TODO]
 * Best practices baked in.
 
 Installing Dependencies
@@ -42,7 +44,7 @@ npm run configure
 Building for production
 -----------------------
 
-To create a production build, run ```npm run build```. This will create a ``dist/``` folder that can be deployed to CDN server.
+To create a production build, run ```npm run build```. This will create a ```dist/``` folder that can be deployed to CDN server.
 
 FAQs
 ----
@@ -56,4 +58,4 @@ read and maintain.
 
 ### How do I install any other dependency?
 You can install your application dependencies using ```jspm install <pkg-name>```. For development dependencies
-use ``npm install <pkg-name>```.
+use ``npm install <pkg-name> --save-dev```.
