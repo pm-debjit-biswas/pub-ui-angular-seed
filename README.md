@@ -39,6 +39,11 @@ command can be run only once.
 npm run configure
 ```
 
+Building for production
+-----------------------
+
+To create a production build, run ```npm run build```. This will create a ``dist/``` folder that can be deployed to CDN server.
+
 FAQs
 ----
 
