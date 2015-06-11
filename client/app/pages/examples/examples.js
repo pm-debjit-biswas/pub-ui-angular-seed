@@ -8,5 +8,5 @@ export var examplesModule = angular.module('examples', [
     'ui.router',
     todoExampleModule.name
 ])
-    .config(['$stateProvider', examplesRoute])
-    .controller();
+.config(['$stateProvider', examplesRoute])
+.controller();
