@@ -9,15 +9,13 @@
     "start": "node scripts/serve.js",
     "lint": "eslint . && jscs -e **/*.js *.js",
     "test": "npm test",
-    "bundle-name": "ls dist/bundle.min.*.js  | cut -d / -f 2",
-    "prebuild-html": "cp node_modules/pub-ux-components/pmcc/0.1.31/pmcc.min.js dist/ && cp node_modules/angular/angular.min.js dist/",
-    "build-html": "html-dist client/app/index.html --remove-all --insert `npm run bundle-name -s` -o dist/index.html",
+    "build-html": "node scripts/build-html",
     "bundle": "jspm bundle-sfx bootstrap dist/bundle.js",
-    "minify-bundle": "uglifyjs --in-source-map dist/bundle.js.map dist/bundle.js -o dist/bundle.min.js --source-map dist/bundle.min.js.map --source-map-url bundle.min.js.map --source-map-include-sources --source-map-root client/app",
-    "postminify-bundle": "rimraf dist/bundle.js",
+    "minify-bundle": "node scripts/minify-bundle.js",
+    "postminify-bundle": "rimraf dist/bundle.js && rimraf dist/bundle.js.map",
     "add-version": "hashmark -s -l 8 dist/bundle.min.js 'dist/bundle.min.{hash}.js'",
     "postadd-version": "rimraf dist/bundle.min.js",
-    "prebuild": "npm run clean && mkdir -p dist/assets && cp -r client/app/assets dist && mkdir dist/client && cp -r client dist",
+    "prebuild": "npm run lint && npm run clean && node scripts/pre-build.js",
     "build": "npm run bundle && npm run minify-bundle && npm run add-version && npm run build-html"
   },
   "keywords": [
@@ -29,8 +27,6 @@
   "author": "Core UI Team <core-ui-team@pubmatic.com>",
   "license": "Proprietary",
   "devDependencies": {
-    "acorn": "~2.0.1",
-    "escodegen": "~1.6.1",
     "eslint": "~0.21.2",
     "eslint-plugin-angular": "0.0.7",
     "hashmark": "^3.0.0",
@@ -42,9 +38,7 @@
     "rimraf": "^2.4.0",
     "uglifyjs": "^2.4.10"
   },
-  "dependencies": {
-    "pmcc": "git+ssh://git@github.com/PubMatic/pub-ux-components"
-  },
+  "dependencies": {},
   "jspm": {
     "directories": {},
     "dependencies": {

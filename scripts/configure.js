@@ -1,10 +1,6 @@
-var fs = require('fs');
 var path = require('path');
 var spawn = require('child_process').spawn;
 var inquirer = require('inquirer');
-var acorn = require('acorn');
-var walk = require('acorn/dist/walk.js');
-var escodegen = require('escodegen');
 
 inquirer.prompt([
     {
