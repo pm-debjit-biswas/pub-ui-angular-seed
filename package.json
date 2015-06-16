@@ -36,7 +36,8 @@
     "jspm": "~0.15.6",
     "live-server": "~0.7.1",
     "rimraf": "^2.4.0",
-    "uglifyjs": "^2.4.10"
+    "uglifyjs": "^2.4.10",
+    "shelljs": "~0.5.1"
   },
   "dependencies": {},
   "jspm": {
