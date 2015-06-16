@@ -37,7 +37,9 @@
     "rimraf": "^2.4.0",
     "uglifyjs": "^2.4.10",
     "shelljs": "~0.5.1",
-    "jspm-server": "~0.1.4"
+    "jspm-server": "~0.1.4",
+    "chokidar": "~1.0.3",
+    "http-proxy": "~1.11.1"
   },
   "dependencies": {},
   "jspm": {

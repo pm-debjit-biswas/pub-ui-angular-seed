@@ -31,6 +31,15 @@ Running the application
 Run ```npm start```, which will open up ```http://localhost:8181``` on your default browser. Live reload is enabled by 
 default.
 
+To add proxy configuration for accessing APIs, you may add a ```proxyConfig.json``` file at root of the repository. 
+The format of the file will be something like below:
+
+```json
+[
+    {"inventory/": "http://apps.pubmatic.com/"}
+]
+```
+
 Configuring optional dependencies
 ---------------------------------
 
@@ -58,4 +67,4 @@ read and maintain.
 
 ### How do I install any other dependency?
 You can install your application dependencies using ```jspm install <pkg-name>```. For development dependencies
-use ``npm install <pkg-name> --save-dev```.
+use ```npm install <pkg-name> --save-dev```.
