@@ -8,4 +8,6 @@ export var mainModule = angular.module('app', [
     'pmcc',
     homeModule.name,
     examplesModule.name
-]).run();
+])
+    .config(['$locationProvider', ($locationProvider) => $locationProvider.html5Mode(true)])
+    .run();

@@ -7,8 +7,8 @@ System.config({
     ]
   },
   "paths": {
-    "*": "client/app/*.js",
-    "node_modules/*": "node_modules/*.js",
+    "*": "app/*.js",
+    "node_modules/*": "../node_modules/*.js",
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js"
   }
@@ -23,7 +23,6 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.4.7",
     "core-js": "npm:core-js@0.9.13",
     "css": "github:systemjs/plugin-css@0.1.12",
-    "pmcc": "../../node_modules/pub-ux-components/pmcc/0.1.31/pmcc.min",
     "ramda": "npm:ramda@0.14.0",
     "text": "github:systemjs/plugin-text@0.0.2",
     "github:angular-ui/ui-router@0.2.15": {

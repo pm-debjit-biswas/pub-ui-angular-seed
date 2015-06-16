@@ -3,7 +3,7 @@ var HtmlDist = require('html-dist');
 
 require('shelljs/global');
 
-var dist = new HtmlDist(cat(path.join(__dirname, '../client/app/index.html')));
+var dist = new HtmlDist(cat(path.join(__dirname, '../client/index.html')));
 
 dist.removeAll();
 

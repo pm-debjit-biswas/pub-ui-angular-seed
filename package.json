@@ -7,7 +7,7 @@
     "postinstall": "jspm install",
     "configure": "node scripts/configure.js",
     "start": "node scripts/serve.js",
-    "lint": "eslint . && jscs -e **/*.js *.js",
+    "lint": "eslint . && jscs -e **/*.js",
     "test": "npm test",
     "build-html": "node scripts/build-html",
     "bundle": "jspm bundle-sfx bootstrap dist/bundle.js",
@@ -34,14 +34,16 @@
     "inquirer": "~0.8.5",
     "jscs": "~1.13.1",
     "jspm": "~0.15.6",
-    "live-server": "~0.7.1",
     "rimraf": "^2.4.0",
     "uglifyjs": "^2.4.10",
-    "shelljs": "~0.5.1"
+    "shelljs": "~0.5.1",
+    "jspm-server": "~0.1.4"
   },
   "dependencies": {},
   "jspm": {
-    "directories": {},
+    "directories": {
+      "baseURL": "client"
+    },
     "dependencies": {
       "angular": "github:angular/bower-angular@^1.4.0",
       "angular-css": "npm:angular-css@^1.0.7",

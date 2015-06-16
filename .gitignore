@@ -2,6 +2,8 @@ bower_components/
 client/lib/
 node_modules/
 jspm_packages/
+client/jspm_packages/
 .idea/
 npm-debug.log
 dist/
+client/200.html
