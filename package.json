@@ -9,14 +9,8 @@
     "start": "node scripts/serve.js",
     "lint": "eslint . && jscs -e **/*.js",
     "test": "npm test",
-    "build-html": "node scripts/build-html",
-    "bundle": "jspm bundle-sfx bootstrap dist/bundle.js",
-    "minify-bundle": "node scripts/minify-bundle.js",
-    "postminify-bundle": "rimraf dist/bundle.js && rimraf dist/bundle.js.map",
-    "add-version": "hashmark -s -l 8 dist/bundle.min.js 'dist/bundle.min.{hash}.js'",
-    "postadd-version": "rimraf dist/bundle.min.js",
     "prebuild": "npm run lint && npm run clean && node scripts/pre-build.js",
-    "build": "npm run bundle && npm run minify-bundle && npm run add-version && npm run build-html"
+    "build": "node scripts/build"
   },
   "keywords": [
     "angularjs",

@@ -87,6 +87,8 @@ function getRandomPort(cb) {
     });
 }
 
+copyIndexTo200();
+watchIndex();
 getRandomPort(function (staticPort) {
     var staticServerAddr = startLiveServer(staticPort);
 
