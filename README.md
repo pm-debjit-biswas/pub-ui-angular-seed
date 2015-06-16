@@ -4,7 +4,8 @@ PubMatic UI Seed for AngularJS
 This is a boilerplate for PubMatic application UI. This boilerplate supports ES6 using Babel.
 
 __Note__: If you want to use ```npm``` instead of [```jspm```](http://jspm.io) for browser dependencies,
-use the [```npm```](https://github.com/pm-debjit-biswas/pub-ui-angular-seed/tree/npm) branch of this repository.
+use the [```npm-only```](https://github.com/pm-debjit-biswas/pub-ui-angular-seed/tree/npm-only) branch of this 
+repository.
 
 Features
 --------
@@ -28,7 +29,7 @@ npm install
 Running the application
 -----------------------
 
-Run ```npm start```, which will open up ```http://localhost:8181``` on your default browser. Live reload is enabled by 
+Run ```npm start```, which will start a server at ```http://localhost:<random_port>```. Live reload is enabled by
 default.
 
 To add proxy configuration for accessing APIs, you may add a ```proxyConfig.json``` file at root of the repository. 
