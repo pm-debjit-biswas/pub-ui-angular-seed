@@ -33,14 +33,14 @@ bundle('bootstrap', pathA('../dist/bundle.js'))
         var version = pieces[pieces.length - 1].split('.')[2];
 
         rm(pathA('../dist/bundle.min.js'));
-        mv(pathA('../dist/bundle.min.js.map'),
+        cp(pathA('../dist/bundle.min.js.map'),
             pathA('../dist/bundle.min.' + version + '.js.map'));
 
         buildHtml(pathA('../client/index.html'),
             pathA('../dist/index.html'), [
                 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js',
                 'https://s3.amazonaws.com/pubmatic-cc/0.1.39/pmcc.min.js',
-                pathA('../dist/bundle.min.*.js')
+                pieces[pieces.length - 1]
             ]);
     });
 });
