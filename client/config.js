@@ -23,7 +23,6 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.4.7",
     "core-js": "npm:core-js@0.9.13",
     "css": "github:systemjs/plugin-css@0.1.12",
-    "ramda": "npm:ramda@0.14.0",
     "text": "github:systemjs/plugin-text@0.0.2",
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.4.0"
@@ -125,9 +124,6 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:punycode@1.3.2": {
-      "process": "github:jspm/nodelibs-process@0.1.1"
-    },
-    "npm:ramda@0.14.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:readable-stream@1.1.13": {
