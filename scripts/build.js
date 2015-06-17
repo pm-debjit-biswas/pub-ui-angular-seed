@@ -26,7 +26,7 @@ console.log('Bundling...');
 bundle('bootstrap', minifiedBundle).then(function () {
 
     // Now add version to the minified bundle file according to the
-    // pattern in versionedBundlePattern. The version is the MD5
+    // pattern in versionedBundlePattern. The version is MD5 value
     // of the content.
     console.log('Adding version...');
     addVersion(minifiedBundle, versionedBundlePattern, function () {
@@ -38,7 +38,7 @@ bundle('bootstrap', minifiedBundle).then(function () {
         // Get just the version
         var version = finalBuiltFile.split('.')[2];
 
-        // Remove the minifed bundle as now we have the minified bundle
+        // Remove the minifed bundle as now we have the versioned bundle
         rm(minifiedBundle);
 
         // Create a versioned copy of the sourcemap file
