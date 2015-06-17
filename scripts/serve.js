@@ -44,9 +44,9 @@ function startProxyServer(port, staticServerAddr) {
     var proxy = httpProxy.createProxyServer({});
 
     var proxyConfig = [];
-    if (!fs.existsSync('./proxyConfig.json')) {
+    if (!fs.existsSync('./proxyconfig.json')) {
         console.log(('You can add proxy configuration, ' +
-        'for APIs, by adding proxyConfig.json file at root').yellow);
+        'for APIs, by adding proxyconfig.json file at root').yellow);
         proxyConfig = [];
     } else {
         proxyConfig = require(path.join(__dirname, '../proxyConfig.json'));

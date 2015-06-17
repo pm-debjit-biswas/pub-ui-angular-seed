@@ -7,4 +7,4 @@ client/jspm_packages/
 npm-debug.log
 dist/
 client/200.html
-proxyConfig.json
+proxyconfig.json

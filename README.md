@@ -14,6 +14,7 @@ Features
 * Build system
 * Linting and style checks
 * Testing infrastructure [TODO]
+* Development server with proxy support to access APIs
 * Best practices baked in.
 
 Installing Dependencies
@@ -32,7 +33,7 @@ Running the application
 Run ```npm start```, which will start a server at ```http://localhost:<random_port>```. Live reload is enabled by
 default.
 
-To add proxy configuration for accessing APIs, you may add a ```proxyConfig.json``` file at root of the repository. 
+To add proxy configuration for accessing APIs, you may add a ```proxyconfig.json``` file at root of the repository. 
 The format of the file will be something like below:
 
 ```json
