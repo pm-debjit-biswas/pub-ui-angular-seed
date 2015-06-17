@@ -23,8 +23,8 @@ Installing Dependencies
 All the dependencies required for the build system, testing and so on are managed with npm and defined in
 package.json. They can be installed with:
 
-```
-npm install 
+```bash
+$ npm install 
 ```
 
 Running the application
@@ -48,8 +48,8 @@ Configuring optional dependencies
 You can install some optional helper libraries and do some configuration using the below command. Currently this 
 command can be run only once.
 
-```
-npm run configure
+```bash
+$ npm run configure
 ```
 
 Building for production
@@ -68,5 +68,9 @@ No, but it is highly recommended. Such a library will provide many built-in func
 read and maintain.
 
 ### How do I install any other dependency?
-You can install your application dependencies using ```jspm install <pkg-name>```. For development dependencies
-use ```npm install <pkg-name> --save-dev```.
+You can install your application dependencies using ```jspm install <pkg-name>``` to install from JSPM registry, or 
+use ```jspm install npm:<pkg-name>``` to install it from NPM registry. The general pattern is ```jspm install 
+registry:<pkg-name>```, where registry can be npm, github or bower.
+Read more about [installing packages with ```jspm```](https://github.com/jspm/jspm-cli/blob/master/docs/installing-packages.md).
+
+For development dependencies use ```npm install <pkg-name> --save-dev```.
