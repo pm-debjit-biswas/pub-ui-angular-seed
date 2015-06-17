@@ -1,7 +1,7 @@
 var fs = require('fs');
 var hashmark = require('hashmark');
 
-function getVersion(jsfile, outfile, cb) {
+function addVersion(jsfile, outfile, cb) {
     var file = fs.createReadStream(jsfile);
 
     hashmark(file, {length: 8, digest: 'md5', 'pattern': outfile}, function (err, map) {
@@ -12,4 +12,4 @@ function getVersion(jsfile, outfile, cb) {
     });
 }
 
-module.exports = getVersion;
+module.exports = addVersion;
