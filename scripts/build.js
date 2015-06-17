@@ -2,7 +2,6 @@ var path = require('path');
 
 var bundle = require('./bundle');
 var buildHtml = require('./build-html');
-var minifyBundle = require('./minify-bundle');
 var getVersion = require('./add-version');
 
 require('shelljs/global');
@@ -14,19 +13,8 @@ function pathA(file) {
 var installedNgVersion = ls('client/jspm_packages/github/angular/*.js')[0]
     .split('@').pop().replace('\.js', '');
 
-bundle('bootstrap', pathA('bundle.js'))
+bundle('bootstrap', pathA('bundle.min.js'))
 .then(function () {
-    minifyBundle(
-        pathA('bundle.js'),
-        pathA('bundle.min.js'),
-        pathA('bundle.min.js.map')
-    );
-
-    rm('-rf',
-        pathA('bundle.js'),
-        pathA('bundle.js.map')
-    );
-
     getVersion(pathA('bundle.min.js'), pathA('bundle.min.{hash}.js'), function () {
         var file = ls(pathA('bundle.min.*.js'))[0]
             .split('/').pop();
