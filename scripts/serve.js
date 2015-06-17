@@ -7,16 +7,18 @@ var http = require('http'),
 
 require('shelljs/global');
 
+var pathToIndex = path.join(__dirname, '../client/index.html');
+
 function copyIndexTo200() {
     cp(
-        '-rf',
-        path.join(__dirname, '../client/index.html'),
+        '-f',
+        pathToIndex,
         path.join(__dirname, '../client/200.html')
     );
 }
 
 function watchIndex() {
-    var watcher = chokidar.watch(path.join(__dirname, 'client/index.html'), {
+    var watcher = chokidar.watch(pathToIndex, {
         persistent: true
     });
     watcher.on('change', function() {
