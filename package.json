@@ -1,6 +1,6 @@
 {
   "name": "pub-ui-angular-seed",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An AngularJS boilerplate for PubMatic Applications.",
   "scripts": {
     "clean": "rimraf dist/",
