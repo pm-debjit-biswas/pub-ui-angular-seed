@@ -28,7 +28,6 @@
     "inquirer": "~0.8.5",
     "jspm": "~0.15.6",
     "rimraf": "^2.4.0",
-    "uglifyjs": "^2.4.10",
     "shelljs": "~0.5.1",
     "jspm-server": "~0.1.4",
     "chokidar": "~1.0.3",
