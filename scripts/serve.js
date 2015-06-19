@@ -78,7 +78,7 @@ function startProxyServer(port, staticServerAddr) {
         proxy.ws(req, socket, head, {target: staticServerAddr});
     });
 
-    console.log(('Serving client at http://127.0.0.1:' + port).green);
+    console.log(('Serving client at http://127.0.0.1:' + port + '/#/').green);
     server.listen(port);
 }
 
@@ -91,8 +91,11 @@ function getRandomPort(cb) {
     });
 }
 
+/* Required for html5mode
 copyIndexTo200();
 watchIndex();
+*/
+
 getRandomPort(function (staticPort) {
     var staticServerAddr = startLiveServer(staticPort);
 
