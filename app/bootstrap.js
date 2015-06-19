@@ -6,7 +6,5 @@ import { mainModule } from './main';
 angular.element(document).ready(function() {
     angular.bootstrap(document.body, [
       mainModule.name
-    ], {
-        strictDi: true
-    });
+    ]);
 });
