@@ -36,7 +36,7 @@
   "dependencies": {},
   "jspm": {
     "directories": {
-      "baseURL": "client"
+      "baseURL": "app"
     },
     "dependencies": {
       "angular": "github:angular/bower-angular@^1.4.0",

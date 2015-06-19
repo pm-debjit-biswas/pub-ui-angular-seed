@@ -2,9 +2,9 @@ bower_components/
 client/lib/
 node_modules/
 jspm_packages/
-client/jspm_packages/
+app/jspm_packages/
 .idea/
 npm-debug.log
 dist/
-client/200.html
+app/200.html
 proxyconfig.json

@@ -77,11 +77,6 @@ registry:<pkg-name>```, where registry can be npm, github or bower.
 Read more about [installing packages with ```jspm```](https://github.com/jspm/jspm-cli/blob/master/docs/installing-packages.md).
 
 For development dependencies use ```npm install <pkg-name> --save-dev```.
-
-### Why do you have the ```app``` folder inside ```client``` folder?
-THe idea of the ```client``` folder is to have all the browser related stuff go into that folder. That stuff may or may
- not be code for the application. Such as the ```jspm_packages``` folder is created in the ```client``` folder. 
- ```client``` also separates all the non-browser stuff, such as tooling configuration and build code.
  
 ### Why use JSPM?
 JSPM complements SystemJS very well by automatically maintaining the correct map of dependencies installed. This map 

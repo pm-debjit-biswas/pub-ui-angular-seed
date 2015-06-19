@@ -1,13 +1,14 @@
 var net = require('net');
 var path = require('path');
 var fs = require('fs');
-var chokidar = require('chokidar');
+// var chokidar = require('chokidar');
 var http = require('http'),
     httpProxy = require('http-proxy');
 
 require('shelljs/global');
 
-var pathToIndex = path.join(__dirname, '../client/index.html');
+/*
+var pathToIndex = path.join(__dirname, '../app/index.html');
 
 function copyIndexTo200() {
     cp(
@@ -25,13 +26,14 @@ function watchIndex() {
         copyIndexTo200();
     });
 }
+*/
 
 function startLiveServer(port) {
     var liveServer = require('jspm-server');
     var params = {
         port: port,
         host: '0.0.0.0',
-        root: 'client',
+        root: 'app',
         open: false,
         logLevel: 0
     };

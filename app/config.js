@@ -1,4 +1,3 @@
-/*eslint quotes: [2, "double"]*/
 System.config({
   "transpiler": "babel",
   "babelOptions": {
@@ -7,7 +6,7 @@ System.config({
     ]
   },
   "paths": {
-    "*": "app/*.js",
+    "*": "*.js",
     "node_modules/*": "../node_modules/*.js",
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js"

@@ -1,4 +1,5 @@
 node_modules/**/*
 jspm_packages/**/*
-client/jspm_packages/**/*
+app/jspm_packages/**/*
 dist/*
+app/config.js

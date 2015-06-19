@@ -12,10 +12,10 @@ function pathA(file) {
 
 var minifiedBundle = pathA('bundle.min.js');
 var versionedBundlePattern = pathA('bundle.min.{hash}.js');
-var srcIndexPath = path.join(__dirname, '../client/index.html');
+var srcIndexPath = path.join(__dirname, '../app/index.html');
 
 // Get version of the Angular library that has been installed
-var installedNgVersion = ls('client/jspm_packages/github/angular/*.js')[0]
+var installedNgVersion = ls('app/jspm_packages/github/angular/*.js')[0]
     .split('@').pop().replace('\.js', '');
 var ngPath = 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/' +
         installedNgVersion + '/angular.min.js';
