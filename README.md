@@ -17,6 +17,12 @@ Features
 * Development server with proxy support to access APIs
 * Best practices baked in.
 
+Prerequisites
+-------------
+
+1. Ensure that [NodeJS](http://nodejs.org/) is installed.
+2. It is recommended use ```npm``` version greater than 1.4.28. This is required for npm script arguments to work.
+
 Installing Dependencies
 -----------------------
 
