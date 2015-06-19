@@ -1,9 +1,7 @@
 var net = require('net');
 var path = require('path');
 var fs = require('fs');
-var minimist = require("minimist");
-
-// var chokidar = require('chokidar');
+var minimist = require('minimist');
 var http = require('http'),
     httpProxy = require('http-proxy');
 
@@ -50,9 +48,19 @@ function startProxyServer(port, staticServerAddr) {
 
     var proxy = httpProxy.createProxyServer({});
 
+    proxy.on('error', function (err, req, res) {
+        res.writeHead(500, {
+            'Content-Type': 'text/plain'
+        });
+
+        res.end('Oops! Something terrible happened. Probably the target server misbehaved.');
+        console.log(('[Error]').red, req.url.red,
+            ('Oops! Something terrible happened. Probably the target server misbehaved.').red);
+    });
+
     var proxyConfig = [];
     if (!fs.existsSync('./proxyconfig.json')) {
-        console.log(('You can add proxy configuration, ' +
+        console.log(('[Info] You can add proxy configuration, ' +
         'for APIs, by adding proxyconfig.json file at root').yellow);
         proxyConfig = [];
     } else {
@@ -83,7 +91,7 @@ function startProxyServer(port, staticServerAddr) {
         proxy.ws(req, socket, head, {target: staticServerAddr});
     });
 
-    console.log(('Serving client at http://127.0.0.1:' + port + '/#/').green);
+    console.log(('[Info] Serving client at http://127.0.0.1:' + port + '/#/').green);
     server.listen(port);
 }
 
