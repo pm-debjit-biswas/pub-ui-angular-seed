@@ -84,12 +84,12 @@ lets us import installed modules using simple names. It also gives us a single w
 npm, bower or github. Additionally it also works as a build tool.
 
 ### Can I use Apache for development?
-Yes you can, but there is a catch, for now. You need to serve the ```client``` folder on the Apache root. Currently 
-you cannot serve it from within a folder. This is because of the ```<base>``` tag in the ```index.html``` file, which
- is required for ```html5mode``` in ui-router. We are trying to find a solution to this.
+Yes you can! You just need to copy the files in ```app/``` to Apache. You may also create a soft-link for 
+```app/``` at ```/var/www/html/```, then you won't have to copy files after every change. You will also need to add 
+ProxyPass entries to access APIs.
 
 ### Why does the built-in server start on a random port?
 This enables you to have many applications running simultaneously during development.
 
 ### Where do I store third-party dependencies not available through npm or bower?
-You may add them to ```vendor``` folder inside the ```client``` folder.
+You may add them to ```vendor``` folder inside the ```app``` folder.
