@@ -39,7 +39,7 @@
       "baseURL": "app"
     },
     "dependencies": {
-      "angular": "github:angular/bower-angular@^1.4.0",
+      "angular": "github:angular/bower-angular@1.4.0",
       "angular-css": "npm:angular-css@^1.0.7",
       "angular-ui-router": "github:angular-ui/ui-router@^0.2.15",
       "core-js": "npm:core-js@~0.9.13",
