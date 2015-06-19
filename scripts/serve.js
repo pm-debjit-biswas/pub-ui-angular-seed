@@ -51,7 +51,7 @@ function startProxyServer(port, staticServerAddr) {
         'for APIs, by adding proxyconfig.json file at root').yellow);
         proxyConfig = [];
     } else {
-        proxyConfig = require(path.join(__dirname, '../proxyConfig.json'));
+        proxyConfig = require(path.join(__dirname, '../proxyconfig.json'));
     }
 
     var server = http.createServer(function(req, res) {
