@@ -58,6 +58,8 @@ function startProxyServer(port, staticServerAddr) {
         // You can define here your custom logic to handle the request
         // and then proxy the request.
         var matched = false;
+        // The proxyConfig needs to be an array so that we can have maintain
+        // priority of redirects.
         proxyConfig.forEach(function (route) {
             var pattern = Object.keys(route)[0];
             var match = req.url.match(new RegExp('^/' + pattern + '(.*)'));
