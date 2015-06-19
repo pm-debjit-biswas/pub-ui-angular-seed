@@ -1,12 +1,15 @@
 var net = require('net');
 var path = require('path');
 var fs = require('fs');
+var minimist = require("minimist");
+
 // var chokidar = require('chokidar');
 var http = require('http'),
     httpProxy = require('http-proxy');
 
 require('shelljs/global');
 
+var userOptions = minimist(process.argv.slice(2));
 /*
 var pathToIndex = path.join(__dirname, '../app/index.html');
 
@@ -101,7 +104,11 @@ watchIndex();
 getRandomPort(function (staticPort) {
     var staticServerAddr = startLiveServer(staticPort);
 
-    getRandomPort(function (port) {
-        startProxyServer(port, staticServerAddr);
-    });
+    if (userOptions.port) {
+        startProxyServer(userOptions.port, staticServerAddr);
+    } else {
+        getRandomPort(function (port) {
+            startProxyServer(port, staticServerAddr);
+        });
+    }
 });
