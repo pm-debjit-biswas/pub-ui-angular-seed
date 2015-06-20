@@ -2,9 +2,10 @@ var net = require('net');
 var path = require('path');
 var fs = require('fs');
 var minimist = require('minimist');
-var http = require('http'),
-    httpProxy = require('http-proxy');
+var http = require('http');
+var httpProxy = require('http-proxy');
 
+require('colors');
 require('shelljs/global');
 
 var userOptions = minimist(process.argv.slice(2));
@@ -49,6 +50,7 @@ function startProxyServer(port, staticServerAddr) {
     var proxy = httpProxy.createProxyServer({});
 
     proxy.on('error', function (err, req, res) {
+        console.log(err);
         res.writeHead(500, {
             'Content-Type': 'text/plain'
         });

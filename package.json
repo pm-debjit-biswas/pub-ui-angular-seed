@@ -33,7 +33,8 @@
     "jspm-server": "~0.1.4",
     "chokidar": "~1.0.3",
     "http-proxy": "~1.11.1",
-    "minimist": "~1.1.1"
+    "minimist": "~1.1.1",
+    "colors": "~1.1.2"
   },
   "dependencies": {},
   "jspm": {
