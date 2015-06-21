@@ -1,17 +1,25 @@
-var HtmlDist = require('html-dist');
+var cheerio = require('cheerio');
+var minify = require('html-minifier').minify;
 
 require('shelljs/global');
 
-function buildHtml(infile, outfile, scripts) {
-    var dist = new HtmlDist(cat(infile));
+function buildHtml(infile, outfile, scripts, stylesheets) {
+    var $ = cheerio.load(cat(infile));
 
-    dist.removeAll();
+    $('script').remove();
+    $('link[rel="stylesheet"]').remove();
 
     scripts.forEach(function (script) {
-        dist.insertScript(script);
+        $('body').append('<script src="' + script + '"></script>');
+    });
+    stylesheets.forEach(function (src) {
+        $('head').append('<link rel="stylesheet" href="' + src + '"/>');
     });
 
-    dist.out(true).to(outfile);
+    minify($.html(), {
+        collapseWhitespace: true,
+        removeComments: true
+    }).to(outfile);
 }
 
 module.exports = buildHtml;

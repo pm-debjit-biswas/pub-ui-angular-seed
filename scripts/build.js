@@ -19,7 +19,7 @@ var installedNgVersion = ls('app/jspm_packages/github/angular/*.js')[0]
     .split('@').pop().replace('\.js', '');
 var ngPath = 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/' +
         installedNgVersion + '/angular.min.js';
-var pmccPath = 'https://s3.amazonaws.com/pubmatic-cc/0.1.39/pmcc.min.js';
+var pmccPath = 'https://s3.amazonaws.com/pubmatic-cc/0.1.41/';
 
 // Bundle the bootstrap file and save to minifiedBundle
 console.log('Bundling...');
@@ -58,8 +58,12 @@ bundle('bootstrap', minifiedBundle).then(function () {
             // Scripts to include
             [
                 ngPath,
-                pmccPath,
+                pmccPath + 'pmcc.min.js',
                 finalBuiltFile
+            ],
+            [
+                pmccPath + 'pmcc.min.css',
+                'assets/css/app.css'
             ]
         );
 

@@ -15,8 +15,11 @@
     "globals": {
         "angular": true
     },
+    "plugins": [
+        "angular"
+    ],
     "rules": {
-        "indent": 4,
+        "indent": 2,
         "quotes": [2, "single"],
         "brace-style": [2, "1tbs"],
         "comma-style": [2, "last"],
@@ -32,7 +35,10 @@
         "space-before-blocks": 2,
         "spaced-line-comment": [2, "always", { "exceptions": ["-"]}],
         "strict": [2, "global"],
-        "wrap-iife": 2
+        "wrap-iife": 2,
+
+        "angular/ng_controller_name": 0,
+        "angular/ng_di": [2, "function or array"]
     }
 }
 
