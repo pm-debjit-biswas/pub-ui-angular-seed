@@ -1,3 +1,9 @@
 section p {
     background: #CCC;
 }
+
+p.logo {
+    background: url('../../assets/images/logo_pubmatic_new.png') #444;
+    width: 152px;
+    height: 39px;
+}

@@ -8,15 +8,15 @@ var minifyCSS = require('./minify-css');
 
 require('shelljs/global');
 
-function pathA(file) {
-    return path.join(__dirname, '../dist', file);
+function distSlash(file) {
+    return path.join(__dirname, '../dist', file || '');
 }
 
-var jsBundle = pathA('bundle.js');
-var versionedJSBundlePattern = pathA('bundle.{hash}.js');
+var jsBundle = path.join(__dirname, '../app/bundle.js');
+var versionedJSBundlePattern = distSlash('bundle.{hash}.js');
 
-var cssBundle = pathA('bundle.css');
-var versionedCSSBundlePattern = pathA('bundle.{hash}.css');
+var cssBundle = path.join(__dirname, '../app/bundle.css');
+var versionedCSSBundlePattern = distSlash('bundle.{hash}.css');
 
 var srcIndexPath = path.join(__dirname, '../app/index.html');
 
@@ -38,15 +38,17 @@ bundle('bootstrap', jsBundle).then(function () {
     var jsversion = addVersion(jsBundle, versionedJSBundlePattern);
     var cssversion = addVersion(cssBundle, versionedCSSBundlePattern);
 
+    mv(path.join(__dirname, '../app/bundle.*'), distSlash());
+
     minifyJS(
-        pathA('bundle.' + jsversion + '.js'),
-        pathA('bundle.js.map'),
-        pathA('bundle.min.' + jsversion + '.js'),
-        pathA('bundle.min.' + jsversion + '.js.map')
+        distSlash('bundle.' + jsversion + '.js'),
+        distSlash('bundle.js.map'),
+        distSlash('bundle.min.' + jsversion + '.js'),
+        distSlash('bundle.min.' + jsversion + '.js.map')
     );
     minifyCSS(
-        pathA('bundle.' + cssversion + '.css'),
-        pathA('bundle.min.' + cssversion + '.css')
+        distSlash('bundle.' + cssversion + '.css'),
+        distSlash('bundle.min.' + cssversion + '.css')
     );
 
     // Build the HTML file (index.html)
@@ -57,7 +59,7 @@ bundle('bootstrap', jsBundle).then(function () {
         // Input file
         srcIndexPath,
         // Output file
-        pathA('index.html'),
+        distSlash('index.html'),
         // Scripts to include
         [
             ngPath,
