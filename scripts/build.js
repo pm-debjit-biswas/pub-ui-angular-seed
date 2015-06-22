@@ -12,6 +12,12 @@ function distSlash(file) {
     return path.join(__dirname, '../dist', file || '');
 }
 
+function getInstalledVersion(modulePath) {
+    return ls(
+        path.join(__dirname, 'app/jspm_packages', modulePath, '*.js')
+    )[0].split('@').pop().replace('\.js', '');
+}
+
 var jsBundle = path.join(__dirname, '../app/bundle.js');
 var versionedJSBundlePattern = distSlash('bundle.{hash}.js');
 
@@ -21,10 +27,10 @@ var versionedCSSBundlePattern = distSlash('bundle.{hash}.css');
 var srcIndexPath = path.join(__dirname, '../app/index.html');
 
 // Get version of the Angular library that has been installed
-var installedNgVersion = ls('app/jspm_packages/github/angular/*.js')[0]
-    .split('@').pop().replace('\.js', '');
 var ngPath = 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/' +
-        installedNgVersion + '/angular.min.js';
+    getInstalledVersion('github/angular') + '/angular.min.js';
+var uiRouterPath = 'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/' +
+    getInstalledVersion('github/angular-ui') + '/angular-ui-router.js';
 var pmccPath = 'https://s3.amazonaws.com/pubmatic-cc/0.1.41/';
 
 // Bundle the bootstrap file and save to minifiedBundle
@@ -65,6 +71,7 @@ bundle('bootstrap', jsBundle).then(function () {
         // Scripts to include
         [
             ngPath,
+            uiRouterPath,
             pmccPath + 'pmcc.min.js',
             'bundle.min.' + jsversion + '.js'
         ],
