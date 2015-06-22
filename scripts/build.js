@@ -38,6 +38,8 @@ bundle('bootstrap', jsBundle).then(function () {
     var jsversion = addVersion(jsBundle, versionedJSBundlePattern);
     var cssversion = addVersion(cssBundle, versionedCSSBundlePattern);
 
+    // Files are bundled in app folder so that CSS URL normalization
+    // works properly. Now they can be moved to the dist/ folder.
     mv(path.join(__dirname, '../app/bundle.*'), distSlash());
 
     minifyJS(
