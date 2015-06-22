@@ -2,5 +2,6 @@
     "env": {
         "node": true,
         "shelljs": true
-    }
+    },
+    "plugins": []
 }

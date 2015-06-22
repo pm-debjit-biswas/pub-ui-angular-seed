@@ -10,13 +10,13 @@ System.config({
     "node_modules/*": "../node_modules/*.js",
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js"
-  }
+  },
+  "separateCSS": true
 });
 
 System.config({
   "map": {
     "angular": "github:angular/bower-angular@1.4.0",
-    "angular-css": "npm:angular-css@1.0.7",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
     "babel": "npm:babel-core@5.4.7",
     "babel-runtime": "npm:babel-runtime@5.4.7",

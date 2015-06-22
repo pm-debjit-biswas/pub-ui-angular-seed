@@ -1,15 +1,17 @@
-var fs = require('fs');
-var hashmark = require('hashmark');
+var crypto = require('crypto');
 
-function addVersion(jsfile, outfile, cb) {
-    var file = fs.createReadStream(jsfile);
+require('shelljs/global');
 
-    hashmark(file, {length: 8, digest: 'md5', 'pattern': outfile}, function (err, map) {
-        if (err) {
-            throw err;
-        }
-        cb(map);
-    });
+function addVersion(infile, outfile) {
+    var contents = cat(infile);
+    var hash = crypto.createHash('md5');
+
+    var version = hash.update(contents, 'utf8').digest('hex').slice(0, 8);
+    var outpath = outfile.replace('{hash}', version);
+
+    mv(infile, outpath);
+
+    return version;
 }
 
 module.exports = addVersion;

@@ -27,7 +27,6 @@
     "colors": "~1.1.2",
     "eslint": "~0.23.0",
     "eslint-plugin-angular": "0.0.11",
-    "hashmark": "^3.0.0",
     "html-minifier": "^0.7.2",
     "http-proxy": "~1.11.1",
     "inquirer": "~0.8.5",
@@ -35,7 +34,8 @@
     "jspm-server": "~0.1.4",
     "minimist": "~1.1.1",
     "rimraf": "^2.4.0",
-    "shelljs": "~0.5.1"
+    "shelljs": "~0.5.1",
+    "uglifyjs": "^2.4.10"
   },
   "dependencies": {},
   "jspm": {
@@ -44,7 +44,6 @@
     },
     "dependencies": {
       "angular": "github:angular/bower-angular@1.4.0",
-      "angular-css": "npm:angular-css@^1.0.7",
       "angular-ui-router": "github:angular-ui/ui-router@^0.2.15",
       "core-js": "npm:core-js@~0.9.13",
       "css": "github:systemjs/plugin-css@^0.1.12",
