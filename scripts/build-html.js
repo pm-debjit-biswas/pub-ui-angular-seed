@@ -1,5 +1,5 @@
+/*eslint-disable*/
 var cheerio = require('cheerio');
-var minify = require('html-minifier').minify;
 
 require('shelljs/global');
 
@@ -10,16 +10,19 @@ function buildHtml(infile, outfile, scripts, stylesheets) {
     $('link[rel="stylesheet"]').remove();
 
     scripts.forEach(function (script) {
-        $('body').append('<script src="' + script + '"></script>');
+        if (typeof script === 'string') {
+            $('body').append('<script src="' + script + '"></script>');
+        } else if (script.type === 'content') {
+            var _content = $('<script>').text(script.content);
+            $('body').append(_content);
+        }
     });
     stylesheets.forEach(function (src) {
         $('head').append('<link rel="stylesheet" href="' + src + '"/>');
     });
 
-    minify($.html(), {
-        collapseWhitespace: true,
-        removeComments: true
-    }).to(outfile);
+    $.html().to(outfile);
 }
 
 module.exports = buildHtml;
+/*eslint-enable*/

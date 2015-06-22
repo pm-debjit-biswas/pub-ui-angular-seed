@@ -14,7 +14,7 @@ function distSlash(file) {
 
 function getInstalledVersion(modulePath) {
     return ls(
-        path.join(__dirname, 'app/jspm_packages', modulePath, '*.js')
+        path.join(__dirname, '../app/jspm_packages', modulePath, '*.js')
     )[0].split('@').pop().replace('\.js', '');
 }
 
@@ -27,11 +27,16 @@ var versionedCSSBundlePattern = distSlash('bundle.{hash}.css');
 var srcIndexPath = path.join(__dirname, '../app/index.html');
 
 // Get version of the Angular library that has been installed
+var ngVersion = getInstalledVersion('github/angular');
+var uiRouterVersion = getInstalledVersion('github/angular-ui');
 var ngPath = 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/' +
-    getInstalledVersion('github/angular') + '/angular.min.js';
+     ngVersion + '/angular.min.js';
 var uiRouterPath = 'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/' +
-    getInstalledVersion('github/angular-ui') + '/angular-ui-router.js';
+    uiRouterVersion + '/angular-ui-router.js';
 var pmccPath = 'https://s3.amazonaws.com/pubmatic-cc/0.1.41/';
+
+mv(distSlash('angular.min.js'), distSlash('angular.' + ngVersion + '.min.js'));
+mv(distSlash('angular-ui-router.min.js'), distSlash('angular-ui-router.' + uiRouterVersion + '.min.js'));
 
 // Bundle the bootstrap file and save to minifiedBundle
 console.log('Bundling...');
@@ -71,7 +76,17 @@ bundle('bootstrap', jsBundle).then(function () {
         // Scripts to include
         [
             ngPath,
+            {
+                type: 'content',
+                content: 'window.angular.bootstrap || document.write(\'<script src="' +
+                    'angular.' + ngVersion + '.min.js' + '"><\\/script>\');'
+            },
             uiRouterPath,
+            {
+                type: 'content',
+                content: 'angular.module(\'ui.router\') || document.write(\'<script src="' +
+                    'angular-ui-router.' + uiRouterVersion + '.min.js' + '"><\\/script>\');'
+            },
             pmccPath + 'pmcc.min.js',
             'bundle.min.' + jsversion + '.js'
         ],
