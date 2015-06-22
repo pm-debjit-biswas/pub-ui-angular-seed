@@ -1,4 +1,3 @@
-import 'angular-ui-router';
 import homeRoute from './home.route';
 
 export var homeModule = angular.module('home', [
