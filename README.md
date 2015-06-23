@@ -37,7 +37,11 @@ Running the application
 -----------------------
 
 Run ```npm start```, which will start a server at ```http://localhost:<random_port>```. Live reload is enabled by
-default.
+default. You may also pass a ```--port``` option to the command to start the server on your chosen port.
+
+```bash
+npm start -- --port 8080
+```
 
 To add proxy configuration for accessing APIs, you may add a ```proxyconfig.json``` file at root of the repository. 
 The format of the file will be something like below:
