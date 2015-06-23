@@ -22,6 +22,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.4.7",
     "core-js": "npm:core-js@0.9.13",
     "css": "github:systemjs/plugin-css@0.1.12",
+    "normalize.css": "npm:normalize.css@3.0.3",
     "text": "github:systemjs/plugin-text@0.0.2",
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.4.0"

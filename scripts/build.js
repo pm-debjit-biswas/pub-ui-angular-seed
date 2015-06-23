@@ -14,8 +14,8 @@ function distSlash(file) {
 
 function getInstalledVersion(modulePath) {
     return ls(
-        path.join(__dirname, '../app/jspm_packages', modulePath, '*.js')
-    )[0].split('@').pop().replace('\.js', '');
+        path.join(__dirname, '../app/jspm_packages', modulePath + '*')
+    )[0].split('@').pop();
 }
 
 var jsBundle = path.join(__dirname, '../app/bundle.js');
@@ -27,13 +27,17 @@ var versionedCSSBundlePattern = distSlash('bundle.{hash}.css');
 var srcIndexPath = path.join(__dirname, '../app/index.html');
 
 // Get version of the Angular library that has been installed
-var ngVersion = getInstalledVersion('github/angular');
-var uiRouterVersion = getInstalledVersion('github/angular-ui');
+var ngVersion = getInstalledVersion('github/angular/bower-angular');
+var uiRouterVersion = getInstalledVersion('github/angular-ui/ui-router');
+var normalizeVersion = getInstalledVersion('npm/normalize');
+
 var ngPath = 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/' +
      ngVersion + '/angular.min.js';
 var uiRouterPath = 'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/' +
     uiRouterVersion + '/angular-ui-router.js';
 var pmccPath = 'https://s3.amazonaws.com/pubmatic-cc/0.1.41/';
+var normalizePath = 'https://cdnjs.cloudflare.com/ajax/libs/normalize/' +
+    normalizeVersion + '/normalize.min.css';
 
 mv(distSlash('angular.min.js'), distSlash('angular.' + ngVersion + '.min.js'));
 mv(distSlash('angular-ui-router.min.js'), distSlash('angular-ui-router.' + uiRouterVersion + '.min.js'));
@@ -92,6 +96,7 @@ bundle('bootstrap', jsBundle).then(function () {
         ],
         // Stylesheets to include
         [
+            normalizePath,
             pmccPath + 'pmcc.min.css',
             'bundle.min.' + cssversion + '.css'
         ]
