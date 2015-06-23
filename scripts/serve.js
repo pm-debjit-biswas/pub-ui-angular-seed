@@ -31,7 +31,7 @@ function watchIndex() {
 */
 
 function startLiveServer(port) {
-    var liveServer = require('jspm-server');
+    var liveServer = require('live-server');
     var params = {
         port: port,
         host: '0.0.0.0',
