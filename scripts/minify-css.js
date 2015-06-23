@@ -1,7 +1,8 @@
-var nano = require('cssnano');
-
 function minifyCSS(infile, outfile) {
-    nano(cat(infile), {sourcemap: true}).to(outfile);
+    // Not minifying here as the file is already minified
+    // by plugin-css when bundling with JSPM.
+    // Once we can remove it, we will be minifying it here.
+    cat(infile).to(outfile);
 
     // rm(infile);
 }
