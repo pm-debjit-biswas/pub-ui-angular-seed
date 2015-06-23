@@ -6,7 +6,8 @@ export var mainModule = angular.module('app', [
     homeModule.name,
     examplesModule.name
 ])
+.config(['$urlRouterProvider', $urlRouterProvider => $urlRouterProvider.otherwise('/')])
+.run();
     /* Required for html5mode
     .config(['$locationProvider', $locationProvider => $locationProvider.html5Mode(true).hashPrefix('!')])
     */
-    .run();

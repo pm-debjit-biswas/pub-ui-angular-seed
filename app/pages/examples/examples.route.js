@@ -4,3 +4,5 @@ export default function examplesRoute($stateProvider) {
         abstract: true
     });
 }
+
+examplesRoute.$inject = [ '$stateProvider' ];

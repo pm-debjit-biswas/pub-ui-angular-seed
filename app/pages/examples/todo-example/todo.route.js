@@ -8,3 +8,5 @@ export default function todoExampleRoute($stateProvider) {
         controllerAs: 'todoList'
     });
 }
+
+todoExampleRoute.$inject = [ '$stateProvider' ];
