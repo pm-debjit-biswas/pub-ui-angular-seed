@@ -2,3 +2,12 @@
     text-decoration: line-through;
     color: grey;
 }
+
+.pmcc-page-header {
+    background: #444;
+    color: #FFF;
+}
+
+.pmcc-page-header img {
+    vertical-align: bottom;
+}
