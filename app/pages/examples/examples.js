@@ -6,5 +6,5 @@ export var examplesModule = angular.module('examples', [
     'ui.router',
     todoExampleModule.name
 ])
-.config(['$stateProvider', examplesRoute])
+.config(examplesRoute)
 .controller();

@@ -2,3 +2,19 @@
     text-decoration: line-through;
     color: grey;
 }
+
+.pmcc-page-header {
+    background: #444;
+    color: #FFF;
+    padding: 0 10px;
+}
+
+.pmcc-page-header img {
+    vertical-align: bottom;
+}
+
+.pmcc-page-footer {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 20px;
+}

@@ -7,3 +7,5 @@ export default function homeRoute($stateProvider) {
         template: template
     });
 }
+
+homeRoute.$inject = [ '$stateProvider' ];
