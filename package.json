@@ -9,7 +9,7 @@
     "configure": "node scripts/configure.js",
     "start": "node scripts/serve.js",
     "lint": "eslint .",
-    "test": "npm test",
+    "test": "echo \"Not Implemented yet\"",
     "prebuild": "npm run lint && npm run clean && node scripts/pre-build.js",
     "build": "node scripts/build"
   },
