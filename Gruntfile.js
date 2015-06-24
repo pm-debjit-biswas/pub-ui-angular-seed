@@ -62,6 +62,19 @@ module.exports = function (grunt) {
                 files: [
                     {expand: true, src: ['app/assets/**/*'], dest: 'dist/'}
                 ]
+            },
+            angular: {
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: [
+                            'app/jspm_packages/github/angular/**/angular.min.js',
+                            'app/jspm_packages/github/angular-ui/**/angular-ui-router.min.js'
+                        ],
+                        dest: 'dist/'
+                    }
+                ]
             }
         },
         uglify: {
@@ -76,6 +89,10 @@ module.exports = function (grunt) {
                     dest: 'dist/'
                 }]
             }
+        },
+        clean: {
+            dist: ['dist/'],
+            app: ['app/bundle*']
         }
     });
 
@@ -93,7 +110,8 @@ module.exports = function (grunt) {
         'copy',
         'shell:jspmBundle',
         'filerev',
-        'uglify'
+        'uglify',
+        'clean:app'
     ]);
 };
 
