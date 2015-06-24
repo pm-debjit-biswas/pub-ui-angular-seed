@@ -9,9 +9,10 @@ Features
 * ES6 support
 * Build system
 * Linting and style checks
-* Testing infrastructure [TODO]
+* [TODO] Testing infrastructure
 * Development server with proxy support to access APIs
 * Best practices baked in.
+* [TODO] Optional static typing
 
 Prerequisites
 -------------
@@ -36,7 +37,7 @@ Run ```npm start```, which will start a server at ```http://localhost:<random_po
 default. You may also pass a ```--port``` option to the command to start the server on your chosen port.
 
 ```bash
-npm start -- --port 8080
+$ npm start -- --port 8080
 ```
 
 To add proxy configuration for accessing APIs, you may add a ```proxyconfig.json``` file at root of the repository. 
@@ -99,3 +100,8 @@ This enables you to have many applications running simultaneously during develop
 
 ### Where do I store third-party dependencies not available through npm or bower?
 You may add them to ```vendor``` folder inside the ```app``` folder.
+
+### Why use ESLint instead of JSHint?
+ESLint gives us more flexibility in terms of rules and also supports plugins. With ESLint we can also do style checks
+ which is not done by JSHint anymore and would require us to add JSCS. ESLint is faster than JSHint and JSCS combined.
+With ESLint we can use plugin for AngularJS and make sure all code follows good AngularJS practices.
