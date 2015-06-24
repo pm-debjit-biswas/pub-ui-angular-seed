@@ -13,6 +13,11 @@
     vertical-align: bottom;
 }
 
+.pmcc-page-header a {
+    color: #FFF;
+    text-decoration: none;
+}
+
 .pmcc-page-footer {
     text-align: center;
     font-size: 12px;
