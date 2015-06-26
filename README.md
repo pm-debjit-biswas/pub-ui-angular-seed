@@ -1,7 +1,8 @@
 PubMatic UI Seed for AngularJS
 ==============================
 
-This is a boilerplate for PubMatic application UI. This boilerplate supports ES6 using Babel.
+This is a boilerplate for PubMatic application UI. This boilerplate supports
+[ES6](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf) using [Babel](http://babeljs.io/).
 
 Features
 --------
