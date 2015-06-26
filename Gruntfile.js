@@ -5,6 +5,8 @@ var httpProxy = require('http-proxy');
 var fs = require('fs');
 var path = require('path');
 
+var cdnjsData = require('cdnjs-cdn-data');
+
 const STATIC_PORT = 9001;
 
 module.exports = function (grunt) {
@@ -51,6 +53,50 @@ module.exports = function (grunt) {
                 command: 'jspm bundle-sfx bootstrap app/bundle.js'
             }
         },
+        useminPrepare: {
+            options: {
+                dest: 'dist',
+                flow: {
+                    steps: {
+                        ng: ['concat'],
+                        bundle: ['concat'],
+                        js: ['concat', 'uglifyjs'],
+                        css: ['concat', 'cssmin']
+                    },
+                    post: {}
+                }
+            },
+            html: 'app/index.html'
+        },
+        usemin: {
+            html: ['dist/index.html'],
+            options: {
+                blockReplacements: {
+                    ng: function () {
+                        var ngVersion = fs.readdirSync('app/jspm_packages/github/angular/')[0].split('@').pop();
+                        var routerVersion = fs.readdirSync('app/jspm_packages/github/angular-ui/')[0].split('@').pop();
+                        return '<script src="' + cdnjsData['angular.js'].url(ngVersion) + '"><\/script>' + '\n' +
+                            '<script src="' + cdnjsData['angular-ui-router'].url(routerVersion) + '"><\/script>'
+                    },
+                    normalize: function () {
+                        var version = fs.readdirSync('app/jspm_packages/npm/')
+                            .filter(function (file) {return file.match(/^normalize/)})[0].split('@').pop();
+                        return '<link rel="stylesheet" href="' +
+                                cdnjsData['normalize'].url(version) + '"\/>';
+                    },
+                    bundlejs: function () {
+                        return '<script src="' +
+                            grunt.filerev.summary['app/bundle.js'].split('/').pop()
+                            + '"><\/script>'
+                    },
+                    bundlecss: function () {
+                        return '<link rel="stylesheet" href="' +
+                            grunt.filerev.summary['app/bundle.css'].split('/').pop()
+                            + '"\/>';
+                    }
+                }
+            }
+        },
         filerev: {
             files: {
                 src: ['app/bundle.js', 'app/bundle.css'],
@@ -60,7 +106,12 @@ module.exports = function (grunt) {
         copy: {
             assets: {
                 files: [
-                    {expand: true, src: ['app/assets/**/*'], dest: 'dist/'}
+                    {expand: true, cwd: 'app', src: ['assets/**'], dest: 'dist'}
+                ]
+            },
+            index: {
+                files: [
+                    {expand: true, flatten: true, src: ['app/index.html'], dest: 'dist/'}
                 ]
             },
             angular: {
@@ -107,10 +158,13 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('build', [
+        'eslint',
+        'useminPrepare',
         'copy',
         'shell:jspmBundle',
         'filerev',
         'uglify',
+        'usemin',
         'clean:app'
     ]);
 };
