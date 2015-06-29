@@ -1,7 +1,8 @@
 PubMatic UI Seed for AngularJS
 ==============================
 
-This is a boilerplate for PubMatic application UI. This boilerplate supports ES6 using Babel.
+This is a boilerplate for PubMatic application UI. This boilerplate supports
+[ES6](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf) using [Babel](http://babeljs.io/).
 
 Features
 --------
@@ -63,6 +64,21 @@ Building for production
 -----------------------
 
 To create a production build, run ```npm run build```. This will create a ```dist/``` folder that can be deployed to CDN server.
+
+IMPORTANT: Workflow Command Interface
+-------------------------------------
+
+All applications must support the following package scripts:
+
+- ```npm install```: All dependencies should be installable using this command. If you are using bower or other 
+dependency management tools make sure you are call it's install command in the ```postinstall``` package script.
+- ```npm run build```: This command should do a production build creating a ```dist/``` folder in the root of the 
+application.
+- ```npm test```: This should run all tests for the application.
+- ```npm start```: This should start a development server. If this is not supported in your application please show 
+appropriate error message.
+- ```npm run clean```: This should remove all built files.
+- ```npm run lint```: This should do linting on the application files.
 
 FAQs
 ----
