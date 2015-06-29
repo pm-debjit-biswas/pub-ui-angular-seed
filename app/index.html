@@ -12,8 +12,19 @@
     <link rel="apple-touch-icon" href="assets/images/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
 
+    <!-- buld:dev -->
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <!-- endbuild -->
+
     <!-- build:normalize dist/normalize.min.css -->
-    <link rel="stylesheet" href="jspm_packages/npm/normalize.css@3.0.3/normalize.css"/>
+    <script>
+        document.write('<link rel="stylesheet" href="' + 'jspm_packages/' +
+            System.map['normalize.css'].split(':')[0] + '/' +
+            System.map['normalize.css'].split(':').pop() + '/' +
+            'normalize.css' +
+            '"\/>');
+    </script>
     <!-- endbuild -->
 
     <link rel="stylesheet" href="https://s3.amazonaws.com/pubmatic-cc/latest/pmcc.min.css"/>
@@ -86,8 +97,6 @@
     </div>
 
     <!-- build:ng dist/angular.min.js -->
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
     <script>
         (function () {
             // We require this so that one does not need to
