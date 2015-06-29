@@ -1,13 +1,10 @@
-/*eslint-disable */
-
-var http = require('http');
-var httpProxy = require('http-proxy');
 var fs = require('fs');
-var path = require('path');
-
 var cdnjsData = require('cdnjs-cdn-data');
+var open = require('open');
 
-const STATIC_PORT = 9001;
+var proxyServer = require('./scripts/proxyServer.js');
+
+var staticPort = null;
 
 module.exports = function (grunt) {
 
@@ -34,8 +31,14 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     base: 'app/',
-                    port: STATIC_PORT,
-                    livereload: 35729
+                    port: 0,
+                    useAvailablePort: true,
+                    livereload: true,
+                    onCreateServer: function (server) {
+                        server.on('listening', function () {
+                            staticPort = server.address().port;
+                        });
+                    }
                 }
             }
         },
@@ -43,7 +46,7 @@ module.exports = function (grunt) {
             options: {
                 quiet: true
             },
-            target: [ '**/*.js' ]
+            all: [ '**/*.js' ]
         },
         shell: {
             jspmBundle: {
@@ -76,18 +79,20 @@ module.exports = function (grunt) {
                         var ngVersion = fs.readdirSync('app/jspm_packages/github/angular/')[0].split('@').pop();
                         var routerVersion = fs.readdirSync('app/jspm_packages/github/angular-ui/')[0].split('@').pop();
                         return '<script src="' + cdnjsData['angular.js'].url(ngVersion) + '"><\/script>' + '\n' +
-                            '<script src="' + cdnjsData['angular-ui-router'].url(routerVersion) + '"><\/script>'
+                            '<script src="' + cdnjsData['angular-ui-router'].url(routerVersion) + '"><\/script>';
                     },
                     normalize: function () {
                         var version = fs.readdirSync('app/jspm_packages/npm/')
-                            .filter(function (file) {return file.match(/^normalize/)})[0].split('@').pop();
+                            .filter(function (file) {
+                                return file.match(/^normalize/);
+                            })[0].split('@').pop();
                         return '<link rel="stylesheet" href="' +
-                                cdnjsData['normalize'].url(version) + '"\/>';
+                                cdnjsData.normalize.url(version) + '"\/>';
                     },
                     bundlejs: function () {
                         return '<script src="' +
                             grunt.filerev.summary['app/bundle.js'].split('/').pop()
-                            + '"><\/script>'
+                            + '"><\/script>';
                     },
                     bundlecss: function () {
                         return '<link rel="stylesheet" href="' +
@@ -148,7 +153,17 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('proxy', function () {
-        startProxyServer(9000, 'http://127.0.0.1:' + STATIC_PORT);
+        var done = this.async();
+        var port = grunt.option('port');
+        var openBrowser = !grunt.option('no-open');
+        var address = 'http://127.0.0.1:' + staticPort;
+
+        proxyServer(address, port, function (portListeningOn) {
+            if (openBrowser) {
+                open('http://127.0.0.1:' + portListeningOn);
+            }
+            done();
+        });
     });
 
     grunt.registerTask('serve', [
@@ -168,55 +183,3 @@ module.exports = function (grunt) {
         'clean:app'
     ]);
 };
-
-function startProxyServer(port, staticServerAddr) {
-
-    var proxy = httpProxy.createProxyServer({});
-
-    proxy.on('error', function (err, req, res) {
-        console.log(err);
-        res.writeHead(500, {
-            'Content-Type': 'text/plain'
-        });
-
-        res.end('Oops! Something terrible happened. Probably the target server misbehaved.');
-        console.log(('[Error]').red, req.url.red,
-            ('Oops! Something terrible happened. Probably the target server misbehaved.').red);
-    });
-
-    var proxyConfig = [];
-    if (!fs.existsSync('./proxyconfig.json')) {
-        console.log(('[Info] You can add proxy configuration, ' +
-        'for APIs, by adding proxyconfig.json file at root').yellow);
-        proxyConfig = [];
-    } else {
-        proxyConfig = require(path.join(__dirname, './proxyconfig.json'));
-    }
-
-    var server = http.createServer(function(req, res) {
-        // You can define here your custom logic to handle the request
-        // and then proxy the request.
-        var matched = false;
-        // The proxyConfig needs to be an array so that we can have maintain
-        // priority of redirects.
-        proxyConfig.forEach(function (route) {
-            var pattern = Object.keys(route)[0];
-            var match = req.url.match(new RegExp('^/' + pattern + '(.*)'));
-            if (match) {
-                proxy.web(req, res, {target: route[pattern]});
-                matched = true;
-            }
-        });
-
-        if (!matched) {
-            proxy.web(req, res, {target: staticServerAddr});
-        }
-    });
-
-    server.on('upgrade', function (req, socket, head) {
-        proxy.ws(req, socket, head, {target: staticServerAddr});
-    });
-
-    console.log(('[Info] Serving client at http://127.0.0.1:' + port + '/#/').green);
-    server.listen(port);
-}

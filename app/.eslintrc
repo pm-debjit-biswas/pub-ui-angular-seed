@@ -1,0 +1,16 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "globals": {
+        "angular": true
+    },
+    "plugins": [
+        "angular"
+    ],
+    "rules": {
+        "angular/ng_controller_name": 0,
+        "angular/ng_di": [2, "function or array"]
+    }
+}
