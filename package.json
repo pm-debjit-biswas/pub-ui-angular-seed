@@ -7,6 +7,7 @@
     "clean": "grunt clean",
     "postinstall": "jspm install",
     "configure": "node scripts/configure.js",
+    "prestart": "echo -n \"Your npm version: \" && npm -v && echo \"If you are using npm version less than 2, you won't be able to use --port or --no-open options.\"",
     "start": "grunt serve",
     "lint": "grunt eslint",
     "test": "npm test",
