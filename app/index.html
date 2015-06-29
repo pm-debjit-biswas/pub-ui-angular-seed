@@ -11,9 +11,31 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="assets/images/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
-    <link rel="stylesheet" href="jspm_packages/npm/normalize.css@3.0.3/normalize.css"/>
-    <link rel="stylesheet" href="https://s3.amazonaws.com/pubmatic-cc/0.1.41/pmcc.min.css"/>
+
+    <!-- buld:dev -->
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:normalize dist/normalize.min.css -->
+    <script>
+        document.write('<link rel="stylesheet" href="' + 'jspm_packages/' +
+            System.map['normalize.css'].split(':')[0] + '/' +
+            System.map['normalize.css'].split(':').pop() + '/' +
+            'normalize.css' +
+            '"\/>');
+    </script>
+    <!-- endbuild -->
+
+    <link rel="stylesheet" href="https://s3.amazonaws.com/pubmatic-cc/latest/pmcc.min.css"/>
+
+    <!-- build:css dist/bundle.custom.js -->
+        <!-- Place stylesheets. Only for emergencies. -->
+    <!-- endbuild -->
+
+    <!-- build:bundlecss dist/bundle.css -->
     <link rel="stylesheet" href="assets/css/app.css"/>
+    <!-- endbuild -->
 </head>
 <body class="pmcc-layout">
     <div class="content">
@@ -70,18 +92,64 @@
             </div>
         </ui-view>
         <footer class="pmcc-page-footer">
-            (c) PubMatic 2015
+            &copy; PubMatic 2015
         </footer>
     </div>
-    <script src="jspm_packages/github/angular/bower-angular@1.4.0/angular.min.js"></script>
-    <script src="jspm_packages/github/angular-ui/ui-router@0.2.15/angular-ui-router.min.js"></script>
-    <script src="https://s3.amazonaws.com/pubmatic-cc/0.1.41/pmcc.min.js"></script>
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
+
+    <!-- build:ng dist/angular.min.js -->
+    <script>
+        (function () {
+            // We require this so that one does not need to
+            // edit this file on upgrading angular or ui-router
+            function writeScript(moduleName, filename) {
+                document.write('<script src="' + 'jspm_packages/' +
+                    System.map[moduleName].split(':')[0] + '/' +
+                    System.map[moduleName].split(':').pop() + '/' +
+                    filename +
+                    '"><\/script>');
+            }
+            writeScript('angular', 'angular.min.js');
+            writeScript('angular-ui-router', 'angular-ui-router.min.js');
+        })();
+    </script>
+    <!--<script src="angular.min.js"></script>-->
+    <!-- endbuild -->
+    <script src="https://s3.amazonaws.com/pubmatic-cc/latest/pmcc.min.js"></script>
+
+    <!-- build:js dist/bundle.custom.js -->
+        <!-- Place script tags here for scripts that do not export. Only for emergencies. -->
+    <!-- endbuild -->
+
+    <!-- build:bundlejs dist/bundle.js -->
+    <!--<script src="bundle.js"></script>-->
     <script>
         var __DEV__ = true;
         System.trace = true;
         System.import('bootstrap');
+        /*
+
+        // Much better way of doing things, but
+        // I was asked to support including custom scripts using
+        // script tag. Sigh...
+
+        System.config({
+            map: {
+                pmcc: 'http://s3.amazonaws.com/pubmatic-cc/latest/pmcc'
+            }
+        });
+        (function () {
+            var _import = function (module) {
+                return function () {
+                    return System.import(module);
+                };
+            };
+            System.import('angular')
+                .then(_import('angular-ui-router'))
+                .then(_import('pmcc'))
+                .then(_import('bootstrap'));
+        })();
+        */
     </script>
+    <!-- endbuild -->
 </body>
 </html>

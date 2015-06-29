@@ -1,51 +1,13 @@
-var net = require('net');
-var path = require('path');
-var fs = require('fs');
-var minimist = require('minimist');
 var http = require('http');
 var httpProxy = require('http-proxy');
+var fs = require('fs');
+var path = require('path');
 
 require('colors');
-require('shelljs/global');
 
-var userOptions = minimist(process.argv.slice(2));
-/*
-var pathToIndex = path.join(__dirname, '../app/index.html');
+var getRandomPort = require('./randomPort');
 
-function copyIndexTo200() {
-    cp(
-        '-f',
-        pathToIndex,
-        path.join(__dirname, '../client/200.html')
-    );
-}
-
-function watchIndex() {
-    var watcher = chokidar.watch(pathToIndex, {
-        persistent: true
-    });
-    watcher.on('change', function() {
-        copyIndexTo200();
-    });
-}
-*/
-
-function startLiveServer(port) {
-    var liveServer = require('live-server');
-    var params = {
-        port: port,
-        host: '0.0.0.0',
-        root: 'app',
-        open: false,
-        logLevel: 0
-    };
-
-    liveServer.start(params);
-
-    return 'http://127.0.0.1:' + port;
-}
-
-function startProxyServer(port, staticServerAddr) {
+module.exports = function proxyServer(staticServerAddr, port, cb) {
 
     var proxy = httpProxy.createProxyServer({});
 
@@ -61,7 +23,7 @@ function startProxyServer(port, staticServerAddr) {
     });
 
     var proxyConfig = [];
-    if (!fs.existsSync('./proxyconfig.json')) {
+    if (!fs.existsSync('../proxyconfig.json')) {
         console.log(('[Info] You can add proxy configuration, ' +
         'for APIs, by adding proxyconfig.json file at root').yellow);
         proxyConfig = [];
@@ -93,32 +55,26 @@ function startProxyServer(port, staticServerAddr) {
         proxy.ws(req, socket, head, {target: staticServerAddr});
     });
 
-    console.log(('[Info] Serving client at http://127.0.0.1:' + port + '/#/').green);
-    server.listen(port);
-}
-
-function getRandomPort(cb) {
-    var server = net.createServer().listen(0, function () {
-        var port = server.address().port;
-        server.close(function () {
-            cb(port);
-        });
-    });
-}
-
-/* Required for html5mode
-copyIndexTo200();
-watchIndex();
-*/
-
-getRandomPort(function (staticPort) {
-    var staticServerAddr = startLiveServer(staticPort);
-
-    if (userOptions.port) {
-        startProxyServer(userOptions.port, staticServerAddr);
-    } else {
-        getRandomPort(function (port) {
-            startProxyServer(port, staticServerAddr);
-        });
+    function showSuccessMsg(_port) {
+        console.log(
+            ('[Info] Serving client at http://127.0.0.1:' + _port + '/#/').green +
+                ' \u261A Open this address'
+        );
     }
-});
+
+    if (!port) {
+        getRandomPort(function (_port) {
+            server.listen(_port);
+            showSuccessMsg(_port);
+            if (typeof cb === 'function') {
+                cb(_port);
+            }
+        });
+    } else {
+        server.listen(port);
+        showSuccessMsg(port);
+        if (typeof cb === 'function') {
+            cb(port);
+        }
+    }
+};

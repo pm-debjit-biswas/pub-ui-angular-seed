@@ -1,7 +1,6 @@
 {
     "env": {
-        "browser": true,
-        "es6": true
+        "node": true
     },
     "ecmaFeatures": {
         "modules": true,
@@ -12,12 +11,6 @@
         "restParams": true,
         "templateStrings": true
     },
-    "globals": {
-        "angular": true
-    },
-    "plugins": [
-        "angular"
-    ],
     "rules": {
         "indent": 2,
         "quotes": [2, "single"],
@@ -35,10 +28,7 @@
         "space-before-blocks": 2,
         "spaced-line-comment": [2, "always", { "exceptions": ["-"]}],
         "strict": [2, "global"],
-        "wrap-iife": 2,
-
-        "angular/ng_controller_name": 0,
-        "angular/ng_di": [2, "function or array"]
+        "wrap-iife": 2
     }
 }
 
